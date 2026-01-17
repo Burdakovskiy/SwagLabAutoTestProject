@@ -34,10 +34,10 @@ Conventions:
 | UI-RG-011 | Cancel checkout from overview returns correctly | UI   | @regression @ui   | (Map)   | Checkout   | Medium   | Cancel from overview returns to inventory (confirm actual behavior) |
 | UI-RG-012 | Sorting changes product order                   | UI   | @regression @ui   | AJ-03   | Sorting    | Low      | Selected sort changes order according to option |
 
-## API Smoke (TBD)
+## API Smoke (Not applicable)
 API automation is not applicable for SauceDemo.
 
 ---
 
-## API Regression (TBD)
+## API Regression (Not applicable)
 API automation is not applicable for SauceDemo.

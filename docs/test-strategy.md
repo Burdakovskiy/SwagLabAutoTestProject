@@ -12,13 +12,13 @@ Provide a stable, maintainable automated test suite that:
 
 ### In Scope
 - UI E2E tests for core user flows
-- Basic API checks (if applicable)
 - Smoke and Regression suites
 
 ### Out of Scope
 - Visual regression testing
 - Performance and load testing
 - Accessibility testing
+- Basic API checks (Not applicable)
 - Cross-browser layout testing
 
 ---
@@ -31,7 +31,8 @@ Provide a stable, maintainable automated test suite that:
 - Uses stable locators only
 
 ### API
--API automation is not applicable for SauceDemo.
+- Not applicable: no stable Fetch/XHR endpoints were found during network analysis
+- UI E2E is the primary automation level for this application
 
 ---
 
