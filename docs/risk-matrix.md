@@ -1,102 +1,25 @@
-# SauceDemo E2E Test Automation
-
-## 1. Project Overview
-This repository contains end-to-end (E2E) UI and API automated tests
-for the SauceDemo (Swag Labs) web application.
-
-The goal of this project is to provide:
-- fast feedback on critical user flows (Smoke tests)
-- stable regression coverage for core business scenarios
-- CI-ready automated checks for every code change
-
----
-
-## 2. Test Scope
-### Covered:
-- UI E2E tests (Playwright)
-  - Authentication
-  - Product catalog
-  - Cart
-  - Checkout flow
-- API tests (Playwright APIRequestContext)
-  - Core backend endpoints
-  - Test data preparation
-- Smoke and Regression test suites
-
-### Not covered:
-- Visual/UI styling validation
-- Performance/load testing
-- Cross-browser layout testing
-- Accessibility testing
-
----
-
-## 3. Tech Stack
-
-- Playwright Test
-- TypeScript
-- Node.js
-- GitHub Actions (CI)
-- Playwright HTML Reports
+# Risk Matrix — SauceDemo
 
 
-## 4. Requirements
+| Area       | Risk Description                                      | Impact | Frequency | Volatility | Priority | Automation Level        |
+|------------|-------------------------------------------------------|:------:|:---------:|:----------:|:--------:|-------------------------|
+| Auth       | User cannot login with valid credentials               |   5    |     5     |     2      | High     | UI (Smoke) + API        |
+| Auth       | Invalid credentials allow login                        |   5    |     3     |     2      | High     | UI (Regression)         |
+| Inventory  | Product list not displayed after login                 |   5    |     4     |     2      | High     | UI (Smoke)              |
+| Inventory  | Add to cart button does not work                       |   5    |     4     |     3      | High     | UI (Smoke)              |
+| Inventory  | Remove from inventory does not update cart             |   4    |     3     |     3      | Medium   | UI (Regression)         |
+| Cart       | Cart does not reflect selected products                |   5    |     4     |     3      | High     | UI (Smoke)              |
+| Cart       | Remove item from cart does not work                    |   4    |     3     |     2      | Medium   | UI (Regression)         |
+| Checkout   | Checkout cannot be completed (happy path broken)       |   5    |     4     |     3      | High     | UI (Smoke)              |
+| Checkout   | Checkout allows missing required customer information  |   4    |     3     |     2      | Medium   | UI (Regression)         |
+| Checkout   | Incorrect total or tax calculation                     |   5    |     2     |     3      | Medium   | UI (Regression)         |
+| Sorting    | Product sorting does not change order                  |   2    |     2     |     3      | Low      | UI (Regression)         |
+| UI Layout  | Visual misalignment or broken layout                   |   1    |     2     |     5      | Low      | Manual / Not automated  |
 
-- Node.js >= 18
-- npm >= 9
 
-Check versions:
-```bash
-node -v
-npm -v
-```
+Notes:
+- Impact: business impact if broken (1–5)
+- Frequency: how often user hits the area (1–5)
+- Volatility: how often it changes (1–5)
 
-## 5. Installation
-
-Clone repository:
-```bash
-git clone <REPO_URL>
-cd <REPO_FOLDER>
-```
-
-Install project dependencies:
-```bash
-npm install
-```
-
-Install Playwright browsers:
-```bash
-npx playwright install
-```
-
-## 6. Running Tests
-
-Run all tests:
-```bash
-npm test
-```
-Run Smoke tests:
-```bash
-npm run test:smoke
-```
-
-Run UI E2E tests:
-```bash
-npm run test:ui
-```
-
-Run API tests:
-```bash
-npm run test:api
-```
-
-Debug mode:
-```bash
-npm run test:debug
-```
-
-## 7. View report
-```bash
-npm run report
-```
-
+Automation ROI: (Impact × Frequency) – Volatility
