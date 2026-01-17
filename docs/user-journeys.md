@@ -1,102 +1,152 @@
-# SauceDemo E2E Test Automation
+# User Journeys — SauceDemo
 
-## 1. Project Overview
-This repository contains end-to-end (E2E) UI and API automated tests
-for the SauceDemo (Swag Labs) web application.
+## 1. Happy Path Journeys
 
-The goal of this project is to provide:
-- fast feedback on critical user flows (Smoke tests)
-- stable regression coverage for core business scenarios
-- CI-ready automated checks for every code change
+### JP-01: Successful Login
+**Goal:** Access product catalog
 
----
+Preconditions:
+- User is on login page
 
-## 2. Test Scope
-### Covered:
-- UI E2E tests (Playwright)
-  - Authentication
-  - Product catalog
-  - Cart
-  - Checkout flow
-- API tests (Playwright APIRequestContext)
-  - Core backend endpoints
-  - Test data preparation
-- Smoke and Regression test suites
+Steps:
+1. User enters valid credentials
+2. User submits login form
 
-### Not covered:
-- Visual/UI styling validation
-- Performance/load testing
-- Cross-browser layout testing
-- Accessibility testing
+Expected Result:
+- Inventory page is displayed
+- Product list is visible
 
 ---
 
-## 3. Tech Stack
+### JP-02: Add Product to Cart
+**Goal:** Select a product for purchase
 
-- Playwright Test
-- TypeScript
-- Node.js
-- GitHub Actions (CI)
-- Playwright HTML Reports
+Preconditions:
+- User is authenticated
+- User is on inventory page
+- Cart is empty
+
+Steps:
+1. User adds a product to the cart
+2. User opens cart page
+
+Expected Result:
+- Cart contains selected product
+- Cart item count is updated
+
+---
+
+### JP-03: Complete Checkout
+**Goal:** Purchase selected product
+
+Preconditions:
+- User is authenticated
+- User has at least one product in the cart
+- User is on cart page
+
+Steps:
+1. User proceeds to checkout
+2. User fills required customer information
+3. User reviews order
+4. User completes checkout
+
+Expected Result:
+- Checkout complete page is displayed
+- Confirmation message is shown
 
 
-## 4. Requirements
+---
 
-- Node.js >= 18
-- npm >= 9
+## 2. Negative Journeys
 
-Check versions:
-```bash
-node -v
-npm -v
-```
+### NJ-01: Invalid Login
+**Goal:** Prevent unauthorized access
 
-## 5. Installation
+Preconditions:
+- User is on login page
+- User is not authenticated
 
-Clone repository:
-```bash
-git clone <REPO_URL>
-cd <REPO_FOLDER>
-```
+Steps:
+1. User enters invalid credentials
+2. User submits login form
 
-Install project dependencies:
-```bash
-npm install
-```
+Expected Result:
+- Error message is displayed
+- User remains on login page
 
-Install Playwright browsers:
-```bash
-npx playwright install
-```
+---
 
-## 6. Running Tests
+### NJ-02: Checkout with Missing Required Fields
+**Goal:** Enforce data validation
 
-Run all tests:
-```bash
-npm test
-```
-Run Smoke tests:
-```bash
-npm run test:smoke
-```
+Preconditions:
+- User is authenticated
+- User has at least one product in the cart
+- User is on checkout information page
 
-Run UI E2E tests:
-```bash
-npm run test:ui
-```
+Variants:
+- Missing first name
+- Missing last name
+- Missing postal code
 
-Run API tests:
-```bash
-npm run test:api
-```
+Steps (for each variant):
+1. User leaves one required field empty
+2. User attempts to continue checkout
 
-Debug mode:
-```bash
-npm run test:debug
-```
+Expected Result:
+- Checkout cannot proceed
+- Validation error is shown
 
-## 7. View report
-```bash
-npm run report
-```
+---
 
+## 3. Alternative / Edge Journeys
+
+### AJ-01: Add and Remove Item from Inventory Page
+**Goal:** Verify cart and UI state synchronization on inventory page
+
+Preconditions:
+- User is authenticated
+- User is on inventory page
+- Cart is empty
+
+Steps:
+1. User adds a product to the cart from inventory page
+2. User removes the same product from inventory page
+
+Expected Result:
+- Cart becomes empty
+- Cart item count is updated accordingly
+- Product action button changes from "Add to cart" to "Remove" and back
+
+
+---
+
+### AJ-02: Remove Item from Cart
+**Goal:** Modify selected products
+
+Preconditions:
+- User is authenticated
+- User has at least one product in the cart
+- User is on cart page
+
+Steps:
+1. User removes product from cart
+
+Expected Result:
+- Cart becomes empty
+- Cart item count is updated
+
+---
+
+### AJ-03: Sorting Products
+**Goal:** Browse products differently
+
+Preconditions:
+- User is authenticated
+- User is on inventory page
+
+Steps:
+1. User changes sorting option
+
+Expected Result:
+- Product order changes accordingly
