@@ -1,152 +1,50 @@
-# User Journeys — SauceDemo
+# Test Catalog — SauceDemo
 
-## 1. Happy Path Journeys
-
-### JP-01: Successful Login
-**Goal:** Access product catalog
-
-Preconditions:
-- User is on login page
-
-Steps:
-1. User enters valid credentials
-2. User submits login form
-
-Expected Result:
-- Inventory page is displayed
-- Product list is visible
+Conventions:
+- Tags: @smoke / @regression + @ui / @api
+- Journey mapping: JP / NJ / AJ from `docs/user-journeys.md`
+- Risk mapping: Area from `docs/risk-matrix.md`
 
 ---
 
-### JP-02: Add Product to Cart
-**Goal:** Select a product for purchase
+## UI Smoke
 
-Preconditions:
-- User is authenticated
-- User is on inventory page
-- Cart is empty
+| Test ID   | Name                         | Type | Tags        | Journey | Risk Area  | Priority | Key Assertions |
+|----------:|------------------------------|------|-------------|---------|------------|----------|----------------|
+| UI-SM-001 | Valid login shows inventory  | UI   | @smoke @ui  | JP-01   | Auth       | High     | Inventory page is displayed; product list visible |
+| UI-SM-002 | Inventory shows products     | UI   | @smoke @ui  | JP-01   | Inventory  | High     | Inventory list is not empty; key UI elements present |
+| UI-SM-003 | Add product to cart          | UI   | @smoke @ui  | JP-02   | Inventory  | High     | Cart badge increments; cart contains selected product |
+| UI-SM-004 | Cart reflects selected items | UI   | @smoke @ui  | JP-02   | Cart       | High     | Cart items match selection; item count correct |
+| UI-SM-005 | Complete checkout (happy)    | UI   | @smoke @ui  | JP-03   | Checkout   | High     | Can proceed through checkout; confirmation page shown |
 
-Steps:
-1. User adds a product to the cart
-2. User opens cart page
+## UI Regression
 
-Expected Result:
-- Cart contains selected product
-- Cart item count is updated
+| Test ID   | Name                                           | Type | Tags              | Journey | Risk Area  | Priority | Key Assertions |
+|----------:|------------------------------------------------|------|-------------------|---------|------------|----------|----------------|
+| UI-RG-001 | Invalid login shows error                       | UI   | @regression @ui   | NJ-01   | Auth       | High     | Error message shown; user remains on login page |
+| UI-RG-002 | Unauthenticated user cannot access inventory    | UI   | @regression @ui   | (Rule)  | Auth       | Medium   | Direct open `/inventory.html` redirects to login or blocks access |
+| UI-RG-003 | Remove item from cart                           | UI   | @regression @ui   | AJ-02   | Cart       | Medium   | Item removed; cart becomes empty; badge updates |
+| UI-RG-004 | Add/remove sync on inventory page               | UI   | @regression @ui   | AJ-01   | Inventory  | Medium   | Button toggles Add↔Remove; badge 0→1→0; cart empty at end |
+| UI-RG-005 | Checkout validation: missing first name         | UI   | @regression @ui   | NJ-02   | Checkout   | Medium   | Cannot continue; validation error displayed |
+| UI-RG-006 | Checkout validation: missing last name          | UI   | @regression @ui   | NJ-02   | Checkout   | Medium   | Cannot continue; validation error displayed |
+| UI-RG-007 | Checkout validation: missing postal code        | UI   | @regression @ui   | NJ-02   | Checkout   | Medium   | Cannot continue; validation error displayed |
+| UI-RG-008 | Checkout overview shows selected items          | UI   | @regression @ui   | JP-03   | Checkout   | Medium   | Overview lists same products as cart |
+| UI-RG-009 | Total and tax are calculated and consistent     | UI   | @regression @ui   | JP-03   | Checkout   | High     | Total = items sum + tax; values are present and > 0 |
+| UI-RG-010 | Cancel checkout from step one returns correctly | UI   | @regression @ui   | (Map)   | Checkout   | Medium   | Cancel from step-one returns to cart (confirm actual behavior) |
+| UI-RG-011 | Cancel checkout from overview returns correctly | UI   | @regression @ui   | (Map)   | Checkout   | Medium   | Cancel from overview returns to inventory (confirm actual behavior) |
+| UI-RG-012 | Sorting changes product order                   | UI   | @regression @ui   | AJ-03   | Sorting    | Low      | Selected sort changes order according to option |
 
----
+## API Smoke (TBD)
+At the moment API checks are TBD until network analysis confirms stable endpoints.
 
-### JP-03: Complete Checkout
-**Goal:** Purchase selected product
-
-Preconditions:
-- User is authenticated
-- User has at least one product in the cart
-- User is on cart page
-
-Steps:
-1. User proceeds to checkout
-2. User fills required customer information
-3. User reviews order
-4. User completes checkout
-
-Expected Result:
-- Checkout complete page is displayed
-- Confirmation message is shown
-
+| Test ID   | Name                      | Type | Tags        | Journey | Risk Area | Priority | Key Assertions |
+|----------:|---------------------------|------|-------------|---------|-----------|----------|----------------|
+| API-SM-001 | Core API availability (TBD) | API  | @smoke @api | N/A     | Auth/Inv  | TBD      | TBD after network analysis |
 
 ---
 
-## 2. Negative Journeys
+## API Regression (TBD)
 
-### NJ-01: Invalid Login
-**Goal:** Prevent unauthorized access
-
-Preconditions:
-- User is on login page
-- User is not authenticated
-
-Steps:
-1. User enters invalid credentials
-2. User submits login form
-
-Expected Result:
-- Error message is displayed
-- User remains on login page
-
----
-
-### NJ-02: Checkout with Missing Required Fields
-**Goal:** Enforce data validation
-
-Preconditions:
-- User is authenticated
-- User has at least one product in the cart
-- User is on checkout information page
-
-Variants:
-- Missing first name
-- Missing last name
-- Missing postal code
-
-Steps (for each variant):
-1. User leaves one required field empty
-2. User attempts to continue checkout
-
-Expected Result:
-- Checkout cannot proceed
-- Validation error is shown
-
----
-
-## 3. Alternative / Edge Journeys
-
-### AJ-01: Add and Remove Item from Inventory Page
-**Goal:** Verify cart and UI state synchronization on inventory page
-
-Preconditions:
-- User is authenticated
-- User is on inventory page
-- Cart is empty
-
-Steps:
-1. User adds a product to the cart from inventory page
-2. User removes the same product from inventory page
-
-Expected Result:
-- Cart becomes empty
-- Cart item count is updated accordingly
-- Product action button changes from "Add to cart" to "Remove" and back
-
-
----
-
-### AJ-02: Remove Item from Cart
-**Goal:** Modify selected products
-
-Preconditions:
-- User is authenticated
-- User has at least one product in the cart
-- User is on cart page
-
-Steps:
-1. User removes product from cart
-
-Expected Result:
-- Cart becomes empty
-- Cart item count is updated
-
----
-
-### AJ-03: Sorting Products
-**Goal:** Browse products differently
-
-Preconditions:
-- User is authenticated
-- User is on inventory page
-
-Steps:
-1. User changes sorting option
-
-Expected Result:
-- Product order changes accordingly
+| Test ID   | Name                           | Type | Tags              | Journey | Risk Area | Priority | Key Assertions |
+|----------:|--------------------------------|------|-------------------|---------|-----------|----------|----------------|
+| API-RG-001 | Contract checks for endpoints (TBD) | API  | @regression @api  | N/A     | TBD       | TBD      | TBD after network analysis |
