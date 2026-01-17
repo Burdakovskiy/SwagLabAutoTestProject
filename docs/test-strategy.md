@@ -31,8 +31,7 @@ Provide a stable, maintainable automated test suite that:
 - Uses stable locators only
 
 ### API
-- Used for fast feedback and test data setup
-- Implemented via Playwright APIRequestContext
+-API automation is not applicable for SauceDemo.
 
 ---
 
@@ -46,7 +45,7 @@ Criteria:
 
 Includes:
 - UI Smoke: see `docs/test-catalog.md` → UI Smoke
-- API Smoke: TBD (after network analysis)
+- API Smoke: API automation is not applicable for SauceDemo.
 
 Tags:
 - @smoke
@@ -62,7 +61,7 @@ Criteria:
 
 Includes:
 - UI Regression: see `docs/test-catalog.md` → UI Regression
-- API Regression: TBD (after network analysis)
+- API Regression: API automation is not applicable for SauceDemo.
 
 Tags:
 - @regression
@@ -74,7 +73,6 @@ Tags:
 - @smoke — critical tests
 - @regression — extended coverage
 - @ui — browser tests
-- @api — API tests
 
 ---
 

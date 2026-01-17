@@ -1,7 +1,7 @@
 # Test Catalog — SauceDemo
 
 Conventions:
-- Tags: @smoke / @regression + @ui / @api
+- Tags: @smoke / @regression + @ui
 - Journey mapping: JP / NJ / AJ from `docs/user-journeys.md`
 - Risk mapping: Area from `docs/risk-matrix.md`
 
@@ -35,16 +35,9 @@ Conventions:
 | UI-RG-012 | Sorting changes product order                   | UI   | @regression @ui   | AJ-03   | Sorting    | Low      | Selected sort changes order according to option |
 
 ## API Smoke (TBD)
-At the moment API checks are TBD until network analysis confirms stable endpoints.
-
-| Test ID   | Name                      | Type | Tags        | Journey | Risk Area | Priority | Key Assertions |
-|----------:|---------------------------|------|-------------|---------|-----------|----------|----------------|
-| API-SM-001 | Core API availability (TBD) | API  | @smoke @api | N/A     | Auth/Inv  | TBD      | TBD after network analysis |
+API automation is not applicable for SauceDemo.
 
 ---
 
 ## API Regression (TBD)
-
-| Test ID   | Name                           | Type | Tags              | Journey | Risk Area | Priority | Key Assertions |
-|----------:|--------------------------------|------|-------------------|---------|-----------|----------|----------------|
-| API-RG-001 | Contract checks for endpoints (TBD) | API  | @regression @api  | N/A     | TBD       | TBD      | TBD after network analysis |
+API automation is not applicable for SauceDemo.
