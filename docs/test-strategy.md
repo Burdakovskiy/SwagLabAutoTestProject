@@ -1,102 +1,92 @@
-# SauceDemo E2E Test Automation
+# Test Strategy — SauceDemo
 
-## 1. Project Overview
-This repository contains end-to-end (E2E) UI and API automated tests
-for the SauceDemo (Swag Labs) web application.
-
-The goal of this project is to provide:
-- fast feedback on critical user flows (Smoke tests)
-- stable regression coverage for core business scenarios
-- CI-ready automated checks for every code change
+## 1. Purpose
+Provide a stable, maintainable automated test suite that:
+- detects critical failures early (Smoke)
+- covers core business logic (Regression)
+- integrates with CI/CD pipelines
 
 ---
 
-## 2. Test Scope
-### Covered:
-- UI E2E tests (Playwright)
-  - Authentication
-  - Product catalog
-  - Cart
-  - Checkout flow
-- API tests (Playwright APIRequestContext)
-  - Core backend endpoints
-  - Test data preparation
-- Smoke and Regression test suites
+## 2. Scope
 
-### Not covered:
-- Visual/UI styling validation
-- Performance/load testing
-- Cross-browser layout testing
+### In Scope
+- UI E2E tests for core user flows
+- Basic API checks (if applicable)
+- Smoke and Regression suites
+
+### Out of Scope
+- Visual regression testing
+- Performance and load testing
 - Accessibility testing
+- Cross-browser layout testing
 
 ---
 
-## 3. Tech Stack
+## 3. Test Levels
 
-- Playwright Test
-- TypeScript
-- Node.js
-- GitHub Actions (CI)
-- Playwright HTML Reports
+### UI E2E
+- Covers critical user journeys
+- Implemented with Playwright
+- Uses stable locators only
 
+### API
+- Used for fast feedback and test data setup
+- Implemented via Playwright APIRequestContext
 
-## 4. Requirements
+---
 
-- Node.js >= 18
-- npm >= 9
+## 4. Test Suites
 
-Check versions:
-```bash
-node -v
-npm -v
-```
+### 4.1 Smoke Tests
+Criteria:
+- Business-critical
+- Fast (<10 minutes)
+- Stable
 
-## 5. Installation
+Includes:
+- UI Smoke: see `docs/test-catalog.md` → UI Smoke
+- API Smoke: TBD (after network analysis)
 
-Clone repository:
-```bash
-git clone <REPO_URL>
-cd <REPO_FOLDER>
-```
+Tags:
+- @smoke
+- @ui
 
-Install project dependencies:
-```bash
-npm install
-```
+---
 
-Install Playwright browsers:
-```bash
-npx playwright install
-```
+### 4.2 Regression Tests
+Criteria:
+- Covers edge cases and validations
+- May run longer
+- Executed nightly or before release
 
-## 6. Running Tests
+Includes:
+- UI Regression: see `docs/test-catalog.md` → UI Regression
+- API Regression: TBD (after network analysis)
 
-Run all tests:
-```bash
-npm test
-```
-Run Smoke tests:
-```bash
-npm run test:smoke
-```
+Tags:
+- @regression
+- @ui
 
-Run UI E2E tests:
-```bash
-npm run test:ui
-```
+---
 
-Run API tests:
-```bash
-npm run test:api
-```
+## 5. Tagging Rules
+- @smoke — critical tests
+- @regression — extended coverage
+- @ui — browser tests
+- @api — API tests
 
-Debug mode:
-```bash
-npm run test:debug
-```
+---
 
-## 7. View report
-```bash
-npm run report
-```
+## 6. Stability Rules
+- No hard waits or sleeps
+- Tests must be independent
+- Clear, business-level assertions
+- Failures must be debuggable via report artifacts
 
+---
+
+## 7. CI Execution Plan
+- Pull Requests: Smoke tests
+- Nightly builds: Regression tests
+- Always publish HTML report
