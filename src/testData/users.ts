@@ -4,7 +4,7 @@ export type UserCredentials = {
 };
 
 export const USERS = {
-    standart: {
+    standard: {
         username: "standard_user",
         password: "secret_sauce",
     },

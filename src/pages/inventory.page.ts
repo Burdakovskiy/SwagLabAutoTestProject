@@ -1,4 +1,4 @@
-import { expect, Location, Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 import { URLs } from "../utils/urls";
 
@@ -14,8 +14,8 @@ export class InventoryPage extends BasePage {
         this.inventoryContainer = page.locator('[data-test="inventory-container"], #inventory_container, .inventory_container');
         this.title = page.locator('[data-test="title"], .title');
         this.burgerMenuButton = page
-            .locator('#react-burger-menu-btn')
-            .or(page.getByRole('button', { name: /open menu/i }));
+            .getByRole("button", { name: /open menu/i })
+            .or(page.locator('#react-burger-menu-btn, [data-test="react-burger-menu-btn"]'));
         this.logoutLink = page.locator('#logout_sidebar_link, [data-test="logout-sidebar-link"]');
     }
 

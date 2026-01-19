@@ -3,7 +3,6 @@ import { AuthActions } from "../../src/actions/auth.actions";
 import { LoginPage } from "../../src/pages/login.page";
 import { InventoryPage } from "../../src/pages/inventory.page";
 
-//TODO: -change name
 type UiFixtures = {
     auth: AuthActions;
     loginPage: LoginPage;
