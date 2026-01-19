@@ -19,17 +19,17 @@ export class LoginPage extends BasePage {
 
     async open(): Promise<void> {
         await this.goto(URLs.base);
-        await this.expectVisible(this.loginButton);
+        await expect(this.loginButton).toBeVisible();
     }
 
     async login(username: string, password: string): Promise<void> {
-        await this.fill(this.usernameInput, username);
-        await this.fill(this.passwordInput, password);
-        await this.click(this.loginButton);
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
     }
 
     async expectErrorVisible(): Promise<void> {
-        await this.expectVisible(this.errorBox);
+        await expect(this.errorBox).toBeVisible();
     }
 
     async expectErrorTextContains(text: string): Promise<void> {

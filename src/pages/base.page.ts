@@ -14,20 +14,4 @@ export abstract class BasePage {
     async waitForUrl(pattern: RegExp | string): Promise<void> {
         await this.page.waitForURL(pattern);
     }
-
-    async click(locator: Locator): Promise<void> {
-        await locator.click();
-    }
-
-    async fill(locator: Locator, value: string): Promise<void> {
-        await locator.fill(value);
-    }
-
-    async expectVisible(locator: Locator): Promise<void> {
-        await expect(locator).toBeVisible();
-    }
-
-    async expectHidden(locator: Locator): Promise<void> {
-        await expect(locator).toBeHidden();
-    }
 }
