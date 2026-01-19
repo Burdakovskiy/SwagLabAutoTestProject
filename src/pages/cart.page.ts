@@ -16,7 +16,7 @@ export class CartPage extends BasePage {
     }
 
     async expectItemPresent(productName: string): Promise<void> {
-        const item = this.page.locator(".cart-item").filter({ hasText: productName });
+        const item = this.page.locator(".cart_item").filter({ hasText: productName });
         await expect(item).toBeVisible();
     }
 
