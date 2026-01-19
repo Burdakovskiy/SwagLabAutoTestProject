@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "test:ui:smoke": "playwright test tests/ui/smoke --grep @smoke",
-  "test:ui:smoke:headed": "playwright test tests/ui/smoke --grep @smoke --headed",
-  "test": "playwright test",
-  "test:smoke": "playwright test --grep @smoke",
-  "test:ui": "playwright test tests/ui",
-  "test:api": "playwright test tests/api",
-  "test:debug": "playwright test --debug",
-  "report": "playwright show-report"
+    "test:api:smoke": "playwright test tests/api/smoke --grep @smoke",
+    "test:ui:smoke": "playwright test tests/ui/smoke --grep @smoke",
+    "test:ui:smoke:headed": "playwright test tests/ui/smoke --grep @smoke --headed",
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
