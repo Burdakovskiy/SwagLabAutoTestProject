@@ -14,7 +14,7 @@ export class LoginPage extends BasePage {
         this.usernameInput = page.locator('[data-test="username"], #user-name');
         this.passwordInput = page.locator('[data-test="password"], #password');
         this.loginButton = page.locator('[data-test="login-button"], #login-button');
-        this.errorBox = page.locator('[data-test="error"], .error-message-container');
+        this.errorBox = page.locator('[data-test="error"]');
     }
 
     async open(): Promise<void> {

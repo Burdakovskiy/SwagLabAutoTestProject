@@ -1,22 +1,23 @@
 import { test, expect } from "../../fixtures/ui.fixtures";
-import { USERS } from "../../../src/testData/users";
+import { CHECKOUT_DATA } from "../../../src/testData/checkout"
 
 const PRODUCT = "Sauce Labs Backpack";
 
 test.describe("@ui @smoke Smoke suite", () => {
-    test("@ui @smoke Login happy path", async ({ loggedInUser, inventoryPage }) => {
+    test("Login happy path", async ({ loggedInUser: _loggedInUser, inventoryPage }) => {
         await expect(inventoryPage.title).toContainText("Products");
     });
 
-    test("@ui @smoke Add to cart", async ({ loggedInUser, checkout }) => {
+    test("Add to cart", async ({ loggedInUser: _loggedInUser, checkout }) => {
         await checkout.addItemAndOpenCart(PRODUCT);
     });
 
-    test("@ui @smoke Checkout end-to-end", async ({ loggedInUser, checkout, cartPage, checkoutStepOne }) => {
+    test("Checkout end-to-end", async ({ loggedInUser: _loggedInUser, checkout, cartPage }) => {
+        const { firstName, lastName, postalCode } = CHECKOUT_DATA.validCustomer;
 
         await checkout.addItemAndOpenCart(PRODUCT);
         await cartPage.proceedToCheckout();
 
-        await checkout.checkoutHappyPath("Dmitriy", "QA", "10115");
+        await checkout.checkoutHappyPath(firstName, lastName, postalCode);
     });
 });

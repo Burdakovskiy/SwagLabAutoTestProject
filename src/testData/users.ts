@@ -12,4 +12,8 @@ export const USERS = {
         username: "locked_out_user",
         password: "secret_sauce",
     },
+    invalid: {
+        username: "wrong_user",
+        password: "wrong_password",
+    },
 } satisfies Record<string, UserCredentials>;

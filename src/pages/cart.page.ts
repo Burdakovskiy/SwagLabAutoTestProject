@@ -23,4 +23,13 @@ export class CartPage extends BasePage {
     async proceedToCheckout(): Promise<void> {
         await this.checkoutButton.click();
     }
+
+    async removeItem(productName: string) {
+        const item = this.page.locator(".cart_item").filter({ hasText: productName });
+        await item.locator('[data-test^="remove"]').click();
+    }
+    async expectItemNotPresent(productName: string) {
+        const item = this.page.locator(".cart_item").filter({ hasText: productName });
+        await expect(item).toHaveCount(0);
+    }
 }
