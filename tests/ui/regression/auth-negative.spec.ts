@@ -19,5 +19,4 @@ test.describe("@ui @regression Auth negative", () => {
     await loginPage.expectErrorVisible();
     await loginPage.expectErrorTextContains(AUTH_ERRORS.locked);
   });
-
 });

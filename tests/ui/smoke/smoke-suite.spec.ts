@@ -4,15 +4,15 @@ import { CHECKOUT_DATA } from "../../../src/testData/checkout"
 const PRODUCT = "Sauce Labs Backpack";
 
 test.describe("@ui @smoke Smoke suite", () => {
-    test("Login happy path", async ({ loggedInUser: _loggedInUser, inventoryPage }) => {
+    test("@ui @smoke Login happy path", async ({ loggedInUser: _loggedInUser, inventoryPage }) => {
         await expect(inventoryPage.title).toContainText("Products");
     });
 
-    test("Add to cart", async ({ loggedInUser: _loggedInUser, checkout }) => {
+    test("@ui @smoke Add to cart", async ({ loggedInUser: _loggedInUser, checkout }) => {
         await checkout.addItemAndOpenCart(PRODUCT);
     });
 
-    test("Checkout end-to-end", async ({ loggedInUser: _loggedInUser, checkout, cartPage }) => {
+    test("@ui @smoke Checkout end-to-end", async ({ loggedInUser: _loggedInUser, checkout, cartPage }) => {
         const { firstName, lastName, postalCode } = CHECKOUT_DATA.validCustomer;
 
         await checkout.addItemAndOpenCart(PRODUCT);

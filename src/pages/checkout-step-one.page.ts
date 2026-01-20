@@ -1,11 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "./base.page";
-
-type CheckoutFormData = {
-    firstName: string;
-    lastName: string;
-    postalCode: string;
-};
+import type { CheckoutFormData } from "../testData/checkout.types";
 
 export class CheckoutStepOnePage extends BasePage {
   readonly title: Locator;
