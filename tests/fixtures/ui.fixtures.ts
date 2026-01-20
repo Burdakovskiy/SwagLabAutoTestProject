@@ -7,6 +7,7 @@ import { CartPage } from "../../src/pages/cart.page";
 import { CheckoutStepOnePage } from "../../src/pages/checkout-step-one.page";
 import { CheckoutOverviewPage } from "../../src/pages/checkout-overview.page";
 import { CheckoutCompletePage } from "../../src/pages/checkout-complete.page";
+import { USERS } from "../../src/testData/users";
 
 type UiFixtures = {
     auth: AuthActions;
@@ -17,6 +18,7 @@ type UiFixtures = {
     checkoutStepOne: CheckoutStepOnePage;
     checkoutOverview: CheckoutOverviewPage;
     checkoutComplete: CheckoutCompletePage;
+    loggedInUser: void;
 };
 
 export const test = base.extend<UiFixtures>({
@@ -43,6 +45,11 @@ export const test = base.extend<UiFixtures>({
     },
     checkoutComplete: async ({ page }, use) => {
         await use(new CheckoutCompletePage(page));
+    },
+    loggedInUser: async ({ page }, use) => {
+        const auth = new AuthActions(page);
+        await auth.loginAndExpectInventory(USERS.standard);
+        await use();
     },
 });
 
