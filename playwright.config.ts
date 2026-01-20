@@ -14,7 +14,7 @@ export default defineConfig({
   use: {
     headless: true,
 
-    trace: "retain-on-failure",
+    trace: process.env.CI ? "on-first-retry" : "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
 
