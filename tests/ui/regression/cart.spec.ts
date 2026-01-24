@@ -1,9 +1,12 @@
-import { test, expect } from "../../fixtures/ui.fixtures";
-import { PRODUCT } from "../../../src/testData/product";
+import { test, expect } from '@fixtures/ui.fixtures';
+import { PRODUCT } from '@src/testData/product';
 
-test.describe("@ui @regression Cart", () => {
-
-  test("@ui @regression add and remove item", async ({ loggedInUser: _loggedInUser, inventoryPage, cartPage }) => {
+test.describe('@ui @regression Cart', () => {
+  test('@ui @regression add and remove item', async ({
+    loggedInUser: _loggedInUser,
+    inventoryPage,
+    cartPage,
+  }) => {
     await inventoryPage.addProductToCartByName(PRODUCT.name);
     await inventoryPage.openCart();
 

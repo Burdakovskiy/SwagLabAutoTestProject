@@ -1,18 +1,18 @@
-import { test, expect } from "../../fixtures/api.fixtures";
-import { HttpBinClient } from "../../../src/api/clients/httpbin.client";
+import { test, expect } from '@fixtures/api.fixtures';
+import { HttpBinClient } from '@src/api/clients/httpbin.client';
 
-test.describe("@api @smoke API smoke", () => {
-  test("@api @smoke backend response with 200", async ({ api }) => {
+test.describe('@api @smoke API smoke', () => {
+  test('@api @smoke backend response with 200', async ({ api }) => {
     const client = new HttpBinClient(api);
 
     const response = await client.getStatus(200);
     expect(response.status()).toBe(200);
   });
 
-  test("@api @smoke POST echoes payload", async ({ api }) => {
+  test('@api @smoke POST echoes payload', async ({ api }) => {
     const client = new HttpBinClient(api);
 
-    const payload = { user: "qa", role: "testr" };
+    const payload = { user: 'qa', role: 'testr' };
     const response = await client.postJson(payload);
 
     expect(response.status()).toBe(200);
@@ -21,7 +21,7 @@ test.describe("@api @smoke API smoke", () => {
     expect(body.json).toEqual(payload);
   });
 
-  test("@api @smoke negative: 404 handled", async ({ api }) => {
+  test('@api @smoke negative: 404 handled', async ({ api }) => {
     const client = new HttpBinClient(api);
 
     const response = await client.getStatus(404);

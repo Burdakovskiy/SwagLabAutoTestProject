@@ -1,6 +1,6 @@
-import { test, expect } from '../../fixtures/ui.fixtures';
-import { CHECKOUT_DATA } from '../../../src/testData/checkout';
-import { PRODUCT } from '../../../src/testData/product';
+import { test, expect } from '@fixtures/ui.fixtures';
+import { CHECKOUT_DATA } from '@src/testData/checkout';
+import { PRODUCT } from '@src/testData/product';
 
 test.describe('@ui @smoke Smoke suite', () => {
   test('@ui @smoke Login happy path', async ({ loggedInUser: _loggedInUser, inventoryPage }) => {
