@@ -1,10 +1,9 @@
-import { Page } from "@playwright/test";
-import { InventoryPage } from "../pages/inventory.page";
-import { CartPage } from "../pages/cart.page";
-import { CheckoutStepOnePage } from "../pages/checkout-step-one.page";
-import { CheckoutOverviewPage } from "../pages/checkout-overview.page";
-import { CheckoutCompletePage } from "../pages/checkout-complete.page";
-
+import { Page } from '@playwright/test';
+import { InventoryPage } from '../pages/inventory.page';
+import { CartPage } from '../pages/cart.page';
+import { CheckoutStepOnePage } from '../pages/checkout-step-one.page';
+import { CheckoutOverviewPage } from '../pages/checkout-overview.page';
+import { CheckoutCompletePage } from '../pages/checkout-complete.page';
 
 export class CheckoutActions {
   private readonly inventory: InventoryPage;
@@ -28,6 +27,7 @@ export class CheckoutActions {
     await this.cart.expectItemPresent(productName);
   }
 
+  //Some test comment
   async checkoutHappyPath(firstName: string, lastName: string, postalCode: string): Promise<void> {
     await this.stepOne.expectOpened();
     await this.stepOne.fillCustomerInfo(firstName, lastName, postalCode);
